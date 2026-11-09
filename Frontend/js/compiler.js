@@ -124,7 +124,7 @@ compileBtn.addEventListener('click', async () => {
     let code = editor.getValue();
     
     try {
-        const response = await fetch('http://127.0.0.1:8000/api/compile', {
+        const response = await fetch('https://ananttix-platform-projects.onrender.com', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ language: currentLang, code: code })
