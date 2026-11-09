@@ -1,0 +1,193 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; scroll-behavior: smooth; }
+:root { --bg: #0a0a0f; --primary: #4a90e2; --secondary: #9b59b6; --text: #ffffff; --muted: #a0a0b0; }
+body { background-color: var(--bg); color: var(--text); overflow-x: hidden; }
+
+/* --- Navbar --- */
+.navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; background: rgba(10, 10, 15, 0.95); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
+.logo { display: flex; align-items: center; gap: 0px; }
+.logo-img { height: 50px; width: auto; object-fit: contain; mix-blend-mode: screen; }
+.logo h1 { font-size: 26px; letter-spacing: 2px; background: linear-gradient(90deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-left: -20px; }
+
+.nav-links { list-style: none; display: flex; align-items: center; gap: 30px; }
+.nav-links > li > a { text-decoration: none; color: var(--text); font-weight: 500; transition: 0.3s; display: flex; align-items: center; gap: 5px; padding: 10px 0;}
+.nav-links > li > a:hover, .nav-links > li > a.active { color: var(--primary); }
+
+/* Login Button */
+.btn-login { padding: 8px 24px !important; border: 2px solid var(--primary); border-radius: 50px; font-size: 0.95rem; transition: 0.3s; }
+.btn-login:hover { background: var(--primary); color: #fff !important; box-shadow: 0 0 15px var(--primary); }
+
+/* --- PROFILE MENU (When Logged In) --- */
+.profile-menu { position: relative; display: inline-block; }
+.profile-trigger { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 5px 10px; border-radius: 50px; border: 2px solid transparent; transition: 0.3s; }
+.profile-trigger:hover { background: rgba(255,255,255,0.05); border-color: var(--primary); }
+.profile-img { width: 35px; height: 35px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
+.profile-name { font-weight: bold; font-size: 0.95rem; color: var(--text); }
+
+.profile-dropdown {
+    display: none; position: absolute; right: 0; top: 130%; background: #15151e; min-width: 220px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.8); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);
+    padding: 15px; z-index: 1001;
+}
+.profile-menu:hover .profile-dropdown { display: block; }
+
+/* Dropdown me Upload & Logout buttons */
+.profile-action-btn {
+    display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px; margin-top: 5px;
+    background: transparent; border: none; color: #ccc; font-size: 0.9rem; cursor: pointer; transition: 0.2s; border-radius: 5px; text-align: left;
+}
+.profile-action-btn:hover { background: rgba(255,255,255,0.1); color: var(--primary); }
+.logout-btn:hover { background: rgba(220, 53, 69, 0.2); color: #ff4444; }
+
+/* --- Dropdown Menu (Courses) --- */
+.dropdown { position: relative; display: inline-block; }
+.dropdown-content { display: none; position: absolute; background-color: #15151e; min-width: 240px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.8); z-index: 1001; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); top: 100%; left: 0; padding: 10px 0; }
+.dropdown-content::before { content: ""; position: absolute; top: -20px; left: 0; width: 100%; height: 20px; background: transparent; }
+.dropdown:hover .dropdown-content { display: block; }
+.dropdown-content a { color: #ccc; padding: 12px 20px; text-decoration: none; display: flex; align-items: center; gap: 10px; transition: 0.2s; font-size: 0.95rem; }
+.dropdown-content a:hover { background-color: rgba(255,255,255,0.05); color: var(--primary); padding-left: 25px; }
+
+/* --- Hero Section --- */
+.hero { min-height: 100vh; display: flex; justify-content: center; align-items: center; text-align: center; padding: 100px 20px 50px 20px; background: radial-gradient(circle at center, rgba(74, 144, 226, 0.1) 0%, transparent 60%); }
+.hero-content h1 { font-size: 4rem; margin-bottom: 20px; }
+.highlight { background: linear-gradient(90deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-content p { font-size: 1.2rem; color: var(--muted); max-width: 600px; margin: 0 auto 30px; line-height: 1.6; }
+.btn-primary { display: inline-block; padding: 15px 30px; background: linear-gradient(90deg, var(--primary), var(--secondary)); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; transition: 0.3s; border: none; cursor: pointer; }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(155, 89, 182, 0.4); }
+
+/* --- Features Section --- */
+.features-section { padding: 80px 50px; text-align: center; background-color: #050508; }
+.features-section h2 { font-size: 2.5rem; margin-bottom: 10px; }
+.section-desc { color: var(--muted); margin-bottom: 50px; font-size: 1.1rem; }
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+.feature-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 40px 20px; border-radius: 15px; transition: 0.3s; text-align: center; }
+.feature-card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 10px 30px rgba(74, 144, 226, 0.15); background: rgba(255,255,255,0.05); }
+.feature-card i { font-size: 3rem; margin-bottom: 20px; }
+.feature-card h3 { margin-bottom: 15px; font-size: 1.4rem; color: #fff; }
+.feature-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
+
+/* --- FOOTER WITH COLORFUL SOCIAL ICONS --- */
+footer {
+    padding: 20px 50px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    background: #050508; 
+    color: var(--muted);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.copyright-text {
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* Colorful Social Media Icons */
+.social-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.social-links a {
+    font-size: 1.8rem; 
+    transition: 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+/* 1. Instagram (Multi-color Gradient) */
+.social-links a .fa-instagram {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 2. LinkedIn (Official Blue) */
+.social-links a .fa-linkedin-in {
+    color: #0A66C2;
+}
+
+/* 3. Facebook (Official Dark Blue) */
+.social-links a .fa-facebook-f {
+    color: #1877F2;
+}
+
+/* 4. Twitter (Official Light Blue) */
+.social-links a .fa-twitter {
+    color: #1DA1F2;
+}
+
+/* Hover Effect */
+.social-links a:hover {
+    transform: translateY(-5px) scale(1.1); 
+}
+
+/* Developer Credit */
+.developer-credit {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    color: #ddd;
+}
+
+.developer-credit strong {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.separator {
+    color: #555;
+}
+
+.college-info {
+    font-size: 0.85rem !important;
+    color: #888 !important;
+}
+
+.college-info i {
+    color: #f89820;
+    margin-right: 4px;
+}
+
+/* Mobile view */
+@media (max-width: 900px) {
+    .footer-content {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+    .social-links {
+        margin: 10px 0;
+        gap: 25px; 
+    }
+    .developer-credit {
+        flex-direction: column;
+        gap: 5px;
+    }
+    .separator {
+        display: none;
+    }
+}
+
+/* --- Login/Signup Page Styling --- */
+.login-body { display: flex; justify-content: center; align-items: center; height: 100vh; position: relative; }
+.login-box { background: rgba(255,255,255,0.05); padding: 40px; border-radius: 15px; width: 400px; border: 1px solid rgba(255,255,255,0.1); text-align: center; }
+.login-box h2 { margin-bottom: 10px; }
+.login-box p { color: var(--muted); margin-bottom: 30px; }
+.input-group { display: flex; align-items: center; background: rgba(0,0,0,0.5); margin-bottom: 20px; padding: 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); }
+.input-group i { color: var(--muted); margin-right: 15px; }
+.input-group input { background: transparent; border: none; outline: none; color: white; width: 100%; }
+.signup-link { margin-top: 20px; font-size: 0.9rem; }
+.signup-link a { color: var(--primary); text-decoration: none; }
+.btn-back { position: absolute; top: 30px; left: 30px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 8px; font-size: 1rem; transition: 0.3s; font-weight: 500; }
+.btn-back:hover { color: var(--primary); transform: translateX(-5px); }

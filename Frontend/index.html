@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANANTIX | Code. Innovate. Scale.</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="assets/logo.png" alt="ANANTIX Logo" class="logo-img">
+            <h1>ANANTIX</h1>
+        </div>
+        
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            
+            <!-- Features -->
+            <li><a href="#features-section">Features</a></li>
+
+            <!-- Courses Dropdown -->
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">Courses <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="https://www.youtube.com/playlist?list=PLu0W_9lII9aiXlHcLx-mDH1Qul38wD3aR" target="_blank">
+                        <i class="fas fa-code" style="color:#a8b9cc;"></i> C Programming
+                    </a>
+                    <a href="https://www.youtube.com/playlist?list=PLu0W_9lII9agpFUAlPFe_VNSlXW5uE0YL" target="_blank">
+                        <i class="fas fa-code" style="color:#00599c;"></i> C++ Masterclass
+                    </a>
+                    <a href="https://www.youtube.com/playlist?list=PL4LFuHwItvKbR1r_M1QjS7y0kY4Bz-pXq" target="_blank">
+                        <i class="fas fa-hashtag" style="color:#68217a;"></i> C# (.NET)
+                    </a>
+                    <a href="https://www.youtube.com/playlist?list=PLu0W_9lII9agICnT8t4iYVSZ3eykIAOME" target="_blank">
+                        <i class="fab fa-python" style="color:#3776ab;"></i> Python Programming
+                    </a>
+                    <a href="https://www.youtube.com/playlist?list=PLfqMhTWNBTe0b2nM6JHVCnAkhQRGiZMSJ" target="_blank">
+                        <i class="fab fa-java" style="color:#f89820;"></i> Java Programming
+                    </a>
+                    <a href="https://www.youtube.com/playlist?list=PLu0W_9lII9ahR1blWXxgSlL4y9iQBnLpR" target="_blank">
+                        <i class="fab fa-js" style="color:#f7df1e;"></i> JavaScript (JS)
+                    </a>
+                    <a href="https://www.youtube.com/playlist?list=PLfqMhTWNBTe3H6c9OGXb5_6wcc1Mca52n" target="_blank">
+                        <i class="fab fa-html5" style="color:#e34f26;"></i> HTML & CSS
+                    </a>
+                    <a href="https://www.youtube.com/playlist?list=PLu0W_9lII9aj0z0fW1Hj8H0w4P3V3V3V3V" target="_blank">
+                        <i class="fas fa-database" style="color:#f29111;"></i> SQL Database
+                    </a>
+                    <a href="https://www.youtube.com/playlist?list=PLinedj3B30sDby4ValGcV9wqN2z1H3H3H" target="_blank">
+                        <i class="fas fa-bolt" style="color:#00add8;"></i> Go (Golang)
+                    </a>
+                    <a href="https://www.youtube.com/playlist?list=PLQkwcJG4YTCS7B7j0e1e1e1e1e1e1e1e1e" target="_blank">
+                        <i class="fas fa-cube" style="color:#7f52ff;"></i> Kotlin
+                    </a>
+                </div>
+            </li>
+
+            <!-- Login/Profile -->
+            <li id="auth-nav-item">
+                <a href="login.html" class="btn-login">Login / Sign Up</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <h1>Welcome to the Future of <span class="highlight">Coding</span></h1>
+            <p>Practice, Compile, and Master Programming Languages with AI-Powered Feedback. Your journey to becoming a Global Developer starts here.</p>
+            <a href="signup.html" id="start-coding-btn" class="btn-primary">Start Coding Practice <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section id="features-section" class="features-section">
+        <h2>Why Choose <span class="highlight">ANANTIX?</span></h2>
+        <p class="section-desc">Everything you need to become a pro developer in one platform.</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-code" style="color:#4a90e2;"></i>
+                <h3>11+ Languages Supported</h3>
+                <p>Code in Python, Java, C, C++, C#, JS, HTML/CSS, SQL, Go, and Kotlin with real-time syntax highlighting.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-robot" style="color:#9b59b6;"></i>
+                <h3>AI Code Reviewer</h3>
+                <p>Get instant AI feedback on your mistakes and learn to write perfect code.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-bug" style="color:#ff4757;"></i>
+                <h3>Real-time Error Lens</h3>
+                <p>Errors are highlighted directly on the line, just like VS Code. Never get stuck again.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-keyboard" style="color:#00add8;"></i>
+                <h3>Standard Input (stdin)</h3>
+                <p>Test your programs with custom inputs. Our IDE supports interactive programs that require user input.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-cogs" style="color:#e67e22;"></i>
+                <h3>Compile & Run</h3>
+                <p>Check your syntax with the Compile button, then run your code to see the real output instantly.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-palette" style="color:#1d6f42;"></i>
+                <h3>Professional Themes</h3>
+                <p>Experience a beautiful, colorful dark theme (Dracula) that is easy on the eyes during long coding sessions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="copyright-text">&copy; 2026 ANANTIX Software Company. All Rights Reserved.</p>
+            
+            <!-- Social Media Icons -->
+            <div class="social-links">
+                <a href="https://www.instagram.com/cups.key88" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/aniket-kumar88" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.facebook.com/Aitechhub9" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/codedotin" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+
+            <div class="developer-credit">
+                <span>Designed & Developed with <i class="fas fa-heart" style="color: #ff4757;"></i> by Aniket Kumar</span>
+                <span class="separator">|</span>
+                <span class="college-info"><i class="fas fa-graduation-cap"></i> MCA (2025-27) | TMU</span>
+            </div>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html>

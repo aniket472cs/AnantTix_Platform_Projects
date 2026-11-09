@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANANTIX IDE - Dashboard</title>
+    
+    <!-- CodeMirror CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/dracula.min.css">
+    
+    <link rel="stylesheet" href="css/ide.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="ide-header" id="ide-header">
+        <div class="header-left">
+            <a href="index.html" class="btn-back-ide" title="Logout"><i class="fas fa-sign-out-alt"></i></a>
+            <div class="ide-logo">ANANTIX IDE</div>
+        </div>
+        
+        <div class="lang-switcher" id="lang-switcher">
+            <button class="lang-btn" data-lang="c"><i class="fas fa-code"></i> C</button>
+            <button class="lang-btn" data-lang="cpp"><i class="fas fa-code"></i> C++</button>
+            <button class="lang-btn" data-lang="csharp"><i class="fas fa-hashtag"></i> C#</button>
+            <button class="lang-btn active" data-lang="python"><i class="fab fa-python"></i> Python</button>
+            <button class="lang-btn" data-lang="java"><i class="fab fa-java"></i> Java</button>
+            <button class="lang-btn" data-lang="javascript"><i class="fab fa-js"></i> JS</button>
+            <button class="lang-btn" data-lang="htmlcss"><i class="fab fa-html5"></i> HTML/CSS</button>
+            <button class="lang-btn" data-lang="sql"><i class="fas fa-database"></i> SQL</button>
+            <button class="lang-btn" data-lang="go"><i class="fas fa-bolt"></i> Go</button>
+            <button class="lang-btn" data-lang="kotlin"><i class="fas fa-cube"></i> Kotlin</button>
+        </div>
+
+        <div class="header-right">
+            <button id="my-codes-btn" class="btn-my-codes"><i class="fas fa-folder"></i> Saved</button>
+            <button id="save-btn" class="btn-save"><i class="fas fa-save"></i> Save</button>
+            <button id="format-btn" class="btn-format"><i class="fas fa-magic"></i> Format</button>
+            <button id="compile-btn" class="btn-compile"><i class="fas fa-cogs"></i> Compile</button>
+            <button id="run-btn" class="btn-run"><i class="fas fa-play"></i> Run</button>
+        </div>
+    </div>
+
+    <div class="workspace" id="workspace-theme">
+        <div class="editor-panel" id="editor-panel">
+            <textarea id="code-editor" spellcheck="false"></textarea>
+            <button id="toggle-editor-btn" class="btn-toggle-editor" title="Toggle Fullscreen Editor">
+                <i class="fas fa-expand" id="toggle-icon"></i>
+            </button>
+        </div>
+        
+        <div class="ai-panel" id="ai-panel">
+            <h3><i class="fas fa-robot"></i> AI Feedback & Console</h3>
+            <div id="ai-output" class="ai-output">
+                <p class="placeholder">Write and run code to get AI feedback...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Input (stdin) Box - Default Hidden, shows on input() -->
+    <div class="stdin-panel" id="stdin-panel" style="display: none;">
+        <label for="stdin-input"><i class="fas fa-keyboard"></i> Standard Input:</label>
+        <textarea id="stdin-input" rows="2" placeholder="Enter input here (e.g. 10 20)"></textarea>
+    </div>
+
+    <div class="terminal-panel" id="terminal-panel">
+        <h3><i class="fas fa-terminal"></i> Output Terminal</h3>
+        <div id="terminal-output" class="terminal-output">> Ready to execute...</div>
+    </div>
+
+    <!-- SAVED CODES MODAL -->
+    <div id="saved-codes-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-folder"></i> My Saved Programs</h2>
+                <span class="close-btn" id="close-modal">&times;</span>
+            </div>
+            <div class="modal-body" id="saved-codes-list">
+                <!-- JS will load saved codes here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- CodeMirror Libraries & Modes -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/clike/clike.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/xml/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/css/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/sql/sql.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/htmlmixed/htmlmixed.min.js"></script>
+    
+    <script src="js/compiler.js"></script>
+</body>
+</html>
