@@ -27,31 +27,13 @@ const editor = CodeMirror.fromTextArea(document.getElementById('code-editor'), {
     lineNumbers: true, mode: "python", theme: "dracula", indentUnit: 4, matchBrackets: true, autoCloseBrackets: true
 });
 
-// --- SMART INPUT DETECTION LOGIC ---
-// Yeh function check karega ki code mein input maanga gaya hai ya nahi
+// SMART INPUT DETECTION LOGIC
 function checkInputNeeded() {
     const code = editor.getValue();
-    
-    const needsInput = 
-        code.includes('input(') || 
-        code.includes('Scanner') || 
-        code.includes('cin >>') || 
-        code.includes('scanf') || 
-        code.includes('Console.ReadLine') || 
-        code.includes('readLine') ||
-        code.includes('fmt.Scan');
-
-    if (needsInput) {
-        stdinPanel.style.display = 'flex'; // Input box show karo
-    } else {
-        stdinPanel.style.display = 'none'; // Input box hide karo
-    }
+    const needsInput = code.includes('input(') || code.includes('Scanner') || code.includes('cin >>') || code.includes('scanf') || code.includes('Console.ReadLine');
+    stdinPanel.style.display = needsInput ? 'flex' : 'none';
 }
-
-// Jab bhi code change ho, check karo
-editor.on("change", function() {
-    checkInputNeeded();
-});
+editor.on("change", checkInputNeeded);
 
 // Fullscreen Toggle
 toggleEditorBtn.addEventListener('click', () => {
@@ -65,7 +47,7 @@ toggleEditorBtn.addEventListener('click', () => {
     } else {
         aiPanel.style.display = 'flex';
         terminalPanel.style.display = 'flex';
-        checkInputNeeded(); // Wapas aane par check karo input chahiye ya nahi
+        checkInputNeeded(); 
         editorPanel.style.flex = '2';
         toggleIcon.classList.replace('fa-compress', 'fa-expand');
     }
@@ -77,12 +59,7 @@ const defaultCode = {
     cpp: `#include <iostream>\nint main() {\n  std::cout << "Hello ANANTIX";\n  return 0;\n}`,
     csharp: `using System;\nclass Program {\n  static void Main() {\n    Console.WriteLine("Hello ANANTIX");\n  }\n}`,
     python: `print("Hello ANANTIX")`, 
-    java: `public class Main {\n  public static void main(String[] args) {\n    System.out.println("Hello ANANTIX");\n  }\n}`,
-    javascript: `console.log("Hello ANANTIX");`,
-    htmlcss: `<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    body { background: #000; color: #fff; }\n  </style>\n</head>\n<body>\n  <h1>Hello ANANTIX!</h1>\n</body>\n</html>`,
-    sql: `SELECT 'Hello ANANTIX' AS Greeting;`,
-    go: `package main\n\nimport "fmt"\n\nfunc main() {\n    fmt.Println("Hello ANANTIX")\n}`,
-    kotlin: `fun main() {\n  println("Hello ANANTIX")\n}`
+    java: `public class Main {\n  public static void main(String[] args) {\n    System.out.println("Hello ANANTIX");\n  }\n}`
 };
 
 // Language Switch
@@ -97,16 +74,12 @@ langBtns.forEach(btn => {
         else if (currentLang === 'cpp') mode = 'text/x-c++src';
         else if (currentLang === 'csharp') mode = 'text/x-csharp';
         else if (currentLang === 'java') mode = 'text/x-java';
-        else if (currentLang === 'htmlcss') mode = 'htmlmixed';
-        else if (currentLang === 'go') mode = 'text/x-go';
-        else if (currentLang === 'kotlin') mode = 'text/x-kotlin';
 
         editor.setOption("mode", mode);
         editor.setValue(defaultCode[currentLang] || "");
         terminalOutput.innerHTML = `> ${currentLang.toUpperCase()} Environment Loaded...`;
         aiOutput.innerHTML = `<p class="placeholder">Ready to analyze ${currentLang} code...</p>`;
         
-        // Language change hone par input box check karein
         checkInputNeeded();
     });
 });
@@ -124,7 +97,7 @@ compileBtn.addEventListener('click', async () => {
     let code = editor.getValue();
     
     try {
-        const response = await fetch('https://ananttix-platform-projects.onrender.com', {
+        const response = await fetch('https://ananttix-platform-projects.onrender.com/api/compile', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ language: currentLang, code: code })
@@ -155,7 +128,7 @@ runBtn.addEventListener('click', async () => {
     aiOutput.innerHTML = "<p class='placeholder'><i class='fas fa-spinner fa-spin'></i> Running...</p>";
 
     try {
-        const response = await fetch('http://127.0.0.1:8000/api/execute', {
+        const response = await fetch('https://ananttix-platform-projects.onrender.com/api/execute', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ language: currentLang, code: code, stdin: userInput })
@@ -177,61 +150,33 @@ runBtn.addEventListener('click', async () => {
     }
 });
 
-// ==========================================
 // SAVE, LOAD & DELETE LOGIC (localStorage)
-// ==========================================
-
-// 1. Save Code
 saveBtn.addEventListener('click', () => {
     const code = editor.getValue();
     if (code.trim() === "") {
         alert("Code is empty! Nothing to save.");
         return;
     }
-    
     let programName = prompt("Enter a name for your program:", "My Program");
     if (!programName) return;
 
-    const savedData = {
-        id: Date.now(),
-        name: programName,
-        language: currentLang,
-        code: code,
-        date: new Date().toLocaleDateString()
-    };
-
+    const savedData = { id: Date.now(), name: programName, language: currentLang, code: code, date: new Date().toLocaleDateString() };
     let existingCodes = JSON.parse(localStorage.getItem('anantix_saved_codes')) || [];
     existingCodes.push(savedData);
-    
     localStorage.setItem('anantix_saved_codes', JSON.stringify(existingCodes));
     alert(`Program "${programName}" saved successfully!`);
 });
 
-// 2. Open Modal & Display Codes
-myCodesBtn.addEventListener('click', () => {
-    modal.style.display = 'block';
-    renderSavedCodes();
-});
+myCodesBtn.addEventListener('click', () => { modal.style.display = 'block'; renderSavedCodes(); });
+closeModal.addEventListener('click', () => { modal.style.display = 'none'; });
+window.addEventListener('click', (event) => { if (event.target === modal) modal.style.display = 'none'; });
 
-// 3. Close Modal
-closeModal.addEventListener('click', () => {
-    modal.style.display = 'none';
-});
-window.addEventListener('click', (event) => {
-    if (event.target === modal) {
-        modal.style.display = 'none';
-    }
-});
-
-// 4. Render Saved Codes List
 function renderSavedCodes() {
     let savedCodes = JSON.parse(localStorage.getItem('anantix_saved_codes')) || [];
-    
     if (savedCodes.length === 0) {
         savedCodesList.innerHTML = "<p style='color: #aaa; text-align: center;'>No saved programs found.</p>";
         return;
     }
-
     savedCodesList.innerHTML = "";
     savedCodes.reverse().forEach(item => {
         const div = document.createElement('div');
@@ -250,7 +195,6 @@ function renderSavedCodes() {
     });
 }
 
-// 5. Load Saved Code into Editor
 window.loadSavedCode = function(id) {
     let savedCodes = JSON.parse(localStorage.getItem('anantix_saved_codes')) || [];
     const codeToLoad = savedCodes.find(item => item.id === id);
@@ -258,9 +202,7 @@ window.loadSavedCode = function(id) {
     if (codeToLoad) {
         langBtns.forEach(b => {
             b.classList.remove('active');
-            if(b.getAttribute('data-lang') === codeToLoad.language) {
-                b.classList.add('active');
-            }
+            if(b.getAttribute('data-lang') === codeToLoad.language) b.classList.add('active');
         });
         
         currentLang = codeToLoad.language;
@@ -269,28 +211,19 @@ window.loadSavedCode = function(id) {
         else if (currentLang === 'cpp') mode = 'text/x-c++src';
         else if (currentLang === 'csharp') mode = 'text/x-csharp';
         else if (currentLang === 'java') mode = 'text/x-java';
-        else if (currentLang === 'htmlcss') mode = 'htmlmixed';
-        else if (currentLang === 'go') mode = 'text/x-go';
-        else if (currentLang === 'kotlin') mode = 'text/x-kotlin';
         
         editor.setOption("mode", mode);
         editor.setValue(codeToLoad.code);
-        
         modal.style.display = 'none';
         terminalOutput.innerHTML = `> Loaded "${codeToLoad.name}" successfully.`;
-        
-        // Load hone par input check karein
         checkInputNeeded();
     }
 }
 
-// 6. Delete Saved Code
 window.deleteSavedCode = function(id) {
     if(!confirm("Are you sure you want to delete this program?")) return;
-    
     let savedCodes = JSON.parse(localStorage.getItem('anantix_saved_codes')) || [];
     let updatedCodes = savedCodes.filter(item => item.id !== id);
-    
     localStorage.setItem('anantix_saved_codes', JSON.stringify(updatedCodes));
     renderSavedCodes();
 }

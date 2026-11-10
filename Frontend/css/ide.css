@@ -5,19 +5,7 @@ body { background-color: #0a0a0f; color: white; height: 100vh; overflow: hidden;
 .ide-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 1px solid #333; z-index: 10; background: #111; gap: 15px; }
 .header-left { display: flex; align-items: center; gap: 15px; flex-shrink: 0; }
 .header-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-
-/* Colorful ANANTIX IDE Text */
-.ide-logo { 
-    font-weight: bold; 
-    letter-spacing: 1px; 
-    font-size: 1.3rem; 
-    white-space: nowrap; 
-    background: linear-gradient(90deg, #ec0808, #eef103, #f0038d);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0px 2px 10px rgba(155, 89, 182, 0.3);
-}
-
+.ide-logo { font-weight: bold; letter-spacing: 1px; font-size: 1.3rem; white-space: nowrap; background: linear-gradient(90deg, #ec0808, #eef103, #f0038d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0px 2px 10px rgba(155, 89, 182, 0.3); }
 .btn-back-ide { color: #ccc; text-decoration: none; font-size: 1.2rem; background: rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 5px; transition: 0.3s; display: flex; align-items: center; justify-content: center; }
 .btn-back-ide:hover { color: #fff; background: rgba(220, 53, 69, 0.8); }
 
@@ -30,36 +18,24 @@ body { background-color: #0a0a0f; color: white; height: 100vh; overflow: hidden;
 .lang-btn { background: rgba(255,255,255,0.03); color: #aaa; border: 1px solid rgba(255, 255, 255, 0.1); padding: 8px 12px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; transition: all 0.3s ease; outline: none; white-space: nowrap; }
 .lang-btn:hover { background: rgba(255,255,255,0.08); transform: translateY(-2px); border-color: #555; }
 
-/* COLORFUL INACTIVE ICONS */
+/* COLORFUL INACTIVE ICONS (Only 5) */
 .lang-btn[data-lang="c"] i { color: #a8b9cc; }
 .lang-btn[data-lang="cpp"] i { color: #00599c; }
 .lang-btn[data-lang="csharp"] i { color: #68217a; }
 .lang-btn[data-lang="python"] i { color: #3776ab; }
 .lang-btn[data-lang="java"] i { color: #f89820; }
-.lang-btn[data-lang="javascript"] i { color: #f7df1e; }
-.lang-btn[data-lang="sql"] i { color: #f29111; }
-.lang-btn[data-lang="go"] i { color: #00add8; }
-.lang-btn[data-lang="kotlin"] i { color: #7f52ff; }
-.lang-btn[data-lang="htmlcss"] i { color: #e34f26; }
 
-/* DYNAMIC GRADIENT ACTIVE BUTTONS */
+/* DYNAMIC GRADIENT ACTIVE BUTTONS (Only 5) */
 .lang-btn.active { color: white; border-color: transparent; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
 .lang-btn.active[data-lang="c"] { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); box-shadow: 0 4px 15px rgba(42, 82, 152, 0.4); }
 .lang-btn.active[data-lang="cpp"] { background: linear-gradient(135deg, #00599c 0%, #00b4db 100%); box-shadow: 0 4px 15px rgba(0, 180, 219, 0.4); }
 .lang-btn.active[data-lang="csharp"] { background: linear-gradient(135deg, #68217a 0%, #b92b27 100%); box-shadow: 0 4px 15px rgba(185, 43, 39, 0.4); }
 .lang-btn.active[data-lang="python"] { background: linear-gradient(135deg, #306998 0%, #ffd43b 100%); box-shadow: 0 4px 15px rgba(255, 212, 59, 0.4); }
 .lang-btn.active[data-lang="java"] { background: linear-gradient(135deg, #e65c00 0%, #F9D423 100%); box-shadow: 0 4px 15px rgba(249, 212, 35, 0.4); }
-.lang-btn.active[data-lang="javascript"] { background: linear-gradient(135deg, #F09819 0%, #f7df1e 100%); color: #111; text-shadow: none; box-shadow: 0 4px 15px rgba(247, 223, 30, 0.4); }
-.lang-btn.active[data-lang="htmlcss"] { background: linear-gradient(135deg, #e34f26 0%, #1572b6 100%); box-shadow: 0 4px 15px rgba(21, 114, 182, 0.4); }
-.lang-btn.active[data-lang="sql"] { background: linear-gradient(135deg, #f29111 0%, #ff4b1f 100%); box-shadow: 0 4px 15px rgba(242, 145, 17, 0.4); }
-.lang-btn.active[data-lang="go"] { background: linear-gradient(135deg, #00add8 0%, #005c97 100%); box-shadow: 0 4px 15px rgba(0, 173, 216, 0.4); }
-.lang-btn.active[data-lang="kotlin"] { background: linear-gradient(135deg, #7f52ff 0%, #e100ff 100%); box-shadow: 0 4px 15px rgba(127, 82, 255, 0.4); }
 .lang-btn.active i { color: inherit !important; background: none !important; -webkit-text-fill-color: initial !important; }
 
 /* Action Buttons */
-.btn-run, .btn-format, .btn-compile, .btn-save, .btn-my-codes { 
-    color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 0.85rem; transition: 0.3s; display: flex; align-items: center; gap: 6px; outline: none; white-space: nowrap; 
-}
+.btn-run, .btn-format, .btn-compile, .btn-save, .btn-my-codes { color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 0.85rem; transition: 0.3s; display: flex; align-items: center; gap: 6px; outline: none; white-space: nowrap; }
 .btn-save { background: #2980b9; }
 .btn-save:hover { background: #1c5980; }
 .btn-my-codes { background: #8e44ad; }
@@ -74,10 +50,8 @@ body { background-color: #0a0a0f; color: white; height: 100vh; overflow: hidden;
 /* WORKSPACE COLORS */
 .workspace { display: flex; flex: 1; overflow: hidden; background: #282a36; position: relative; }
 .editor-panel { flex: 2; border-right: 1px solid #333; display: flex; flex-direction: column; overflow: hidden; position: relative; transition: all 0.3s ease; }
-
 .btn-toggle-editor { position: absolute; top: 15px; right: 20px; z-index: 100; background: transparent; color: #888; border: none; padding: 5px; cursor: pointer; transition: 0.3s; font-size: 1.3rem; outline: none; }
 .btn-toggle-editor:hover { color: #fff; transform: scale(1.2); }
-
 .CodeMirror { height: 100% !important; font-size: 16px; font-family: 'Consolas', 'Courier New', monospace; padding-top: 10px; }
 
 .ai-panel { flex: 1; background: #000000; display: flex; flex-direction: column; border-left: 1px solid #222; }
