@@ -85,8 +85,24 @@ langBtns.forEach(btn => {
 });
 
 // Format Code
+// Smart Format Code
 formatBtn.addEventListener('click', () => { 
+    let code = editor.getValue();
+    
+    // 1. Brackets { } aur Semicolon ; ke baad enter (new line) lagana
+    code = code.replace(/{/g, '{\n')
+               .replace(/}/g, '\n}\n')
+               .replace(/;/g, ';\n');
+               
+    // 2. Faltu khali lines ko hatana
+    code = code.replace(/\n\s*\n/g, '\n');
+    
+    // 3. Code ko editor mein wapas set karna
+    editor.setValue(code);
+    
+    // 4. Ab auto-indent lagana taaki sab perfectly set ho jaye
     editor.execCommand("indentAuto"); 
+    
     terminalOutput.innerHTML = "> Code formatted successfully!"; 
 });
 
